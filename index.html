@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chúc Mừng Sinh Nhật!</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .birthday-title {
+  font-size: 48px;
+  color: #ff1493;
+  text-shadow: 2px 2px #fff;
+  margin-bottom: 20px;
+  z-index: 10;
+  position: relative;
+}
+
+    body {
+      background: linear-gradient(to right, #ffe0ec, #d0f0ff);
+      text-align: center;
+      font-family: 'Comic Sans MS', cursive;
+      padding: 50px;
+      overflow: hidden;
+      position: relative;
+      height: 100vh;
+    }
+
+    .gift-box {
+      width: 150px;
+      height: 150px;
+      background-color: #ff69b4;
+      position: relative;
+      margin: 100px auto 20px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+
+    .gift-box.hide {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      pointer-events: none;
+    }
+
+    .gift-box::before {
+      content: '';
+      width: 160px;
+      height: 20px;
+      background-color: #ff1493;
+      position: absolute;
+      top: -20px;
+      left: -5px;
+      border-radius: 5px 5px 0 0;
+      transition: transform 0.6s ease;
+      transform-origin: bottom center;
+    }
+
+    .gift-box.open::before {
+      transform: rotateX(150deg);
+    }
+
+    .message {
+      font-size: 24px;
+      color: #ff1493;
+      margin-top: 30px;
+      opacity: 0;
+      transition: opacity 1s ease, transform 1s ease;
+      transform: translateY(20px);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .message.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .balloon {
+      width: 60px;
+      height: 80px;
+      background-color: red;
+      border-radius: 50%;
+      position: absolute;
+      bottom: -100px;
+      animation: float 6s ease-in infinite;
+      z-index: 0;
+      will-change: transform;
+    }
+
+    .string {
+      position: absolute;
+      width: 2px;
+      height: 40px;
+      background-color: #555;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translateY(-110vh); opacity: 0; }
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 12px 24px;
+      background-color: #ff69b4;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 20px;
+      position: relative;
+      z-index: 5;
+    }
+
+    a:hover {
+      background-color: #ff1493;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="birthday-title">🎉 Chúc Mừng Sinh Nhật 🎉</h1>
+
+  <div class="gift-box" onclick="openGift()"></div>
+  <div class="message" id="message">🎉 Chúc TLinh tuổi mới ngày càng xinh đẹp và học ngày càng giỏi! 🎂</div>
+
+  <script>
+    function openGift() {
+      const box = document.querySelector('.gift-box');
+      const msg = document.getElementById('message');
+
+      box.classList.add('open');
+      setTimeout(() => {
+        msg.classList.add('show');
+      }, 600);
+    }
+
+    function createBalloon() {
+      const balloon = document.createElement('div');
+      balloon.className = 'balloon';
+
+      balloon.style.left = `${Math.random() * 90}vw`;
+      balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 80%, 60%)`;
+      balloon.style.animationDuration = (Math.random() * 3 + 3) + 's';
+
+      const string = document.createElement('div');
+      string.className = 'string';
+      balloon.appendChild(string);
+
+      document.body.appendChild(balloon);
+
+      setTimeout(() => {
+        balloon.remove();
+      }, 7000);
+    }
+
+    setInterval(createBalloon, 400);
+    function openGift() {
+    const box = document.querySelector('.gift-box');
+    const msg = document.getElementById('message');
+
+    box.classList.add('open');
+    setTimeout(() => {
+      msg.classList.add('show');
+      box.classList.add('hide'); // Ẩn hộp quà khi hiện dòng chữ
+    }, 600);
+  }
+
+  function createBalloon() {
+    const balloon = document.createElement('div');
+    balloon.className = 'balloon';
+
+    balloon.style.left = `${Math.random() * 90}vw`;
+    balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 80%, 60%)`;
+    balloon.style.animationDuration = (Math.random() * 3 + 3) + 's';
+
+    const string = document.createElement('div');
+    string.className = 'string';
+    balloon.appendChild(string);
+
+    document.body.appendChild(balloon);
+
+    setTimeout(() => {
+      balloon.remove();
+    }, 7000);
+  }
+
+  setInterval(createBalloon, 400);
+  </script>
+
+</body>
+</html>
